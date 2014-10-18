@@ -14,6 +14,7 @@ class MovePlayer(System):
 class KeyboardInput(System):
     operating_components = ['Input']
     up, down = 0, 0
+    left, right = 0, 0
 
     def update(self, entityComponents):
         # KEY CHECKS, EDIT AS NECESSARY #
@@ -23,15 +24,21 @@ class KeyboardInput(System):
                     self.up = -1
                 if event.key == pygame.K_DOWN:
                     self.down = 1
+                if event.key == pygame.K_LEFT:
+                    self.left = -1
+                if event.key == pygame.K_RIGHT:
+                    self.right = 1
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     self.up = 0
                 if event.key == pygame.K_DOWN:
                     self.down = 0
+                if event.key == pygame.K_LEFT:
+                    self.left = 0
+                if event.key == pygame.K_RIGHT:
+                    self.right = 0
             entityComponents['Input'].yDir = self.up + self.down
-            print('Up and Down:', entityComponents['Input'].yDir)
-            # For Now!
-            entityComponents['Input'].xDir = 0
+            entityComponents['Input'].xDir = self.left + self.right
 
 class Render(System):
     def __init__(self, screen):
