@@ -1,3 +1,5 @@
+import pygame
+
 class Component:
     def CID(self):
         return self.__class__.__name__
