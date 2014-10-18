@@ -7,7 +7,7 @@ class System:
 class MovePlayer(System):
     operating_components = ['Position', 'Velocity', 'Input']
     def update(self, entityComponents):
-        print('Input xDir:', entityComponents['Input'].xDir)
+        # print('Input xDir:', entityComponents['Input'].xDir)
         entityComponents['Position'].x += entityComponents['Velocity'].vel*entityComponents['Input'].xDir
         entityComponents['Position'].y += entityComponents['Velocity'].vel*entityComponents['Input'].yDir
 
@@ -20,16 +20,16 @@ class KeyboardInput(System):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    self.up = 1
+                    self.up = -1
                 if event.key == pygame.K_DOWN:
-                    self.down = -1
+                    self.down = 1
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     self.up = 0
                 if event.key == pygame.K_DOWN:
                     self.down = 0
-            print('Up and Down:', self.up, self.down)
             entityComponents['Input'].yDir = self.up + self.down
+            print('Up and Down:', entityComponents['Input'].yDir)
             # For Now!
             entityComponents['Input'].xDir = 0
 
@@ -38,7 +38,7 @@ class Render(System):
         self.screen = screen
     operating_components = ['Renderable', 'Position']
     def update(self, entityComponents):
-        entityComponents['Renderable'].image.blit(self.screen, entityComponents['Position'].xy)
+        self.screen.blit(entityComponents['Renderable'].image, entityComponents['Position'].xy)
 
 #### DO NOT EDIT BELOW THIS ####
 

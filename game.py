@@ -25,6 +25,7 @@ def main():
 	while True:
 	    sysManager.runSystems()
 	    pygame.display.update()
+	    CLOCK.tick(FPS)
 
 if __name__ == "__main__":
 	main()

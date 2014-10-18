@@ -5,7 +5,7 @@ class Component:
         return self.__class__.__name__
 
 class Position(Component):
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=200, y=200):
         self.x = x
         self.y = y
     
