@@ -10,8 +10,8 @@ class Position(Component):
         self.y = y
     
     @property
-    def xy():
-        return (x,y)
+    def xy(self):
+        return (self.x,self.y)
 
 class Velocity(Component):
     def __init__(self, vel=5):
