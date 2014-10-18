@@ -5,6 +5,7 @@ class System:
 class MovePlayer(System):
     operating_components = ['Position', 'Velocity', 'Input']
     def update(self, entityComponents):
+        print('Input xDir:', entityComponents['Input'].xDir)
         entityComponents['Position'].x += entityComponents['Velocity'].vel*entityComponents['Input'].xDir
         entityComponents['Position'].y += entityComponents['Velocity'].vel*entityComponents['Input'].yDir
 
@@ -25,6 +26,7 @@ class KeyboardInput(System):
                     self.up = 0
                 if event.key == pygame.K_DOWN:
                     self.down = 0
+            print('Up and Down:', self.up, self.down)
             entityComponents['Input'].yDir = self.up + self.down
             # For Now!
             entityComponents['Input'].xDir = 0
