@@ -12,7 +12,7 @@ class KeyboardInput(System):
     operating_components = ['Input']
     up, down = 0, 0
 
-    def update():
+    def update(self, entityComponents):
         # KEY CHECKS, EDIT AS NECESSARY #
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -25,9 +25,9 @@ class KeyboardInput(System):
                     self.up = 0
                 if event.key == pygame.K_DOWN:
                     self.down = 0
-            self.yDir = self.up + self.down
+            entityComponents['Input'].yDir = self.up + self.down
             # For Now!
-            self.xDir = 0
+            entityComponents['Input'].xDir = 0
 
 class Render(System):
     def __init__(self, screen):
