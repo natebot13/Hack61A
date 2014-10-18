@@ -5,10 +5,13 @@ class System:
 class Move(System):
     operating_components = ['Movable']
     def update(self, entityComponents):
-        print(entityComponents['Movable'].x)
-        print(entityComponents['Movable'].y)
         entityComponents['Movable'].x += entityComponents['Movable'].xvel
         entityComponents['Movable'].y += entityComponents['Movable'].yvel
+
+class Render(System):
+    operating_components = ['Renderable']
+    def update(self, entityComponents):
+        pass
 
 #### DO NOT EDIT BELOW THIS ####
 
