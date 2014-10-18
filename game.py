@@ -23,6 +23,7 @@ def main():
 	entManager.addComponentToEntity(ID, Position())
 
 	while True:
+		SCREEN.fill((0,0,0))
 	    sysManager.runSystems()
 	    pygame.display.update()
 	    CLOCK.tick(FPS)
