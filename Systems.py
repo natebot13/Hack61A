@@ -1,3 +1,5 @@
+import pygame
+
 class System:
     def SID(self):
         return self.__class__.__name__
@@ -34,7 +36,7 @@ class Render(System):
         self.screen = screen
     operating_components = ['Renderable', 'Position']
     def update(self, entityComponents):
-        entityComponents['Renderable'].image.blit(screen, entityComponents['Position'].xy)
+        entityComponents['Renderable'].image.blit(self.screen, entityComponents['Position'].xy)
 
 #### DO NOT EDIT BELOW THIS ####
 
