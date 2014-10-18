@@ -2,24 +2,47 @@ class System:
     def SID(self):
         return self.__class__.__name__
 
-class Move(System):
-    operating_components = ['Movable']
+class MovePlayer(System):
+    operating_components = ['Position', 'Velocity', 'Input']
     def update(self, entityComponents):
-        entityComponents['Movable'].x += entityComponents['Movable'].xvel
-        entityComponents['Movable'].y += entityComponents['Movable'].yvel
+        entityComponents['Position'].x += entityComponents['Velocity'].vel*entityComponents['Input'].xDir
+        entityComponents['Position'].y += entityComponents['Velocity'].vel*entityComponents['Input'].yDir
+
+class KeyboardInput(System):
+    operating_components = ['Input']
+    up, down = 0, 0
+
+    def update():
+        # KEY CHECKS, EDIT AS NECESSARY #
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self.up = 1
+                if event.key == pygame.K_DOWN:
+                    self.down = -1
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    self.up = 0
+                if event.key == pygame.K_DOWN:
+                    self.down = 0
+            self.yDir = self.up + self.down
+            # For Now!
+            self.xDir = 0
 
 class Render(System):
-    operating_components = ['Renderable']
+    def __init__(self, screen):
+        self.screen = screen
+    operating_components = ['Renderable', 'Position']
     def update(self, entityComponents):
-        pass
+        entityComponents['Renderable'].image.blit(screen, entityComponents['Position'].xy)
 
 #### DO NOT EDIT BELOW THIS ####
 
 class SystemsManager:
-    def __init__(self, entity_manager):
+    def __init__(self, entity_manager, screen):
         self.entity_manager = entity_manager
         # BE SURE TO ADD ALL SYSTEMS TO THIS SYSTEM INIT LIST #
-        self.registeredSystems = [Move()]
+        self.registeredSystems = [MovePlayer(), KeyboardInput(), Render(screen)]
         # END SYS INIT LIST #
 
     def runSystems(self):

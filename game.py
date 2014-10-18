@@ -1,12 +1,30 @@
 from Systems import *
 from EntityManager import *
 from Components import *
+import pygame
 
-entManager = EntityManager()
-sysManager = SystemsManager(entManager)
-ID = entManager.newEntity()
-entManager.addComponentToEntity(ID, Movable(xvel=2))
-ID = entManager.newEntity()
-entManager.addComponentToEntity(ID, Movable(xvel=3, yvel=1))
-while True:
-    sysManager.runSystems()
+def main():
+	WIDTH = 512
+	HEIGHT = 512
+	SIZE = (WIDTH,HEIGHT)
+	FPS = 60
+	SCREEN = pygame.display.set_mode(SIZE)
+	pygame.display.set_caption("Hack61A")
+	CLOCK = pygame.time.Clock()
+
+	entManager = EntityManager()
+	sysManager = SystemsManager(entManager, SCREEN)
+	ID = entManager.newEntity()
+	entManager.addComponentToEntity(ID, Position())
+	entManager.addComponentToEntity(ID, Velocity())
+	entManager.addComponentToEntity(ID, Input())
+	entManager.addComponentToEntity(ID, Renderable('ball.png'))
+	ID = entManager.newEntity()
+	entManager.addComponentToEntity(ID, Position())
+
+	while True:
+	    sysManager.runSystems()
+	    pygame.display.update()
+
+if __name__ == "__main__":
+	main()
