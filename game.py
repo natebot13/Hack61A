@@ -15,11 +15,13 @@ def main():
     entManager = EntityManager()
     sysManager = SystemsManager(entManager, SCREEN)
     ID = entManager.newEntity()
-    entManager.addComponentToEntity(ID, Position())
+    entManager.addComponentToEntity(ID, Position(100, 100))
     entManager.addComponentToEntity(ID, Velocity())
+    entManager.addComponentToEntity(ID, Fireball())
+    entManager.addComponentToEntity(ID, Shooter())
     entManager.addComponentToEntity(ID, Renderable('data/graphics/Thing'))
-    ID = entManager.newEntity()
-    entManager.addComponentToEntity(ID, Position())
+    # ID = entManager.newEntity()
+    # entManager.addComponentToEntity(ID, Position())
 
     while True:
         SCREEN.fill((255,255,255))

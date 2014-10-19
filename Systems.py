@@ -13,7 +13,7 @@ class MovePlayer(System):
         entityComponents['Position'].y += entityComponents['Velocity'].speed*sin(entityComponents['Velocity'].angle)
 
 class KeyboardInput(System):
-    operating_components = ['Velocity', 'blah']
+    operating_components = ['Velocity']
     up, down = 0, 0
     left, right = 0, 0
 
@@ -61,6 +61,11 @@ class Render(System):
         else:
             dirstr += 'D'
         self.screen.blit(entityComponents['Renderable'].images[dirstr], entityComponents['Position'].xy)
+
+class FireballShooter(System):
+    operating_components = ['Fireball', 'Shooter', 'Position']
+    def __init__(self, entity_manager):
+        pass
 
 #### DO NOT EDIT BELOW THIS ####
 

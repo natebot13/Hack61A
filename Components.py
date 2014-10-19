@@ -5,7 +5,7 @@ class Component:
         return self.__class__.__name__
 
 class Position(Component):
-    def __init__(self, x=200, y=200):
+    def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
     
@@ -29,7 +29,14 @@ class Renderable(Component):
         else:
             self.images = pygame.image.load(filename + '.png')
 
-class Unique(Component):
+class Fireball(Component):
     def __init__(self):
         pass
 
+class Shooter(Component):
+    def __init__(self):
+        pass
+
+class Unique(Component):
+    def __init__(self):
+        pass
