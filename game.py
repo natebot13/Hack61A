@@ -18,12 +18,12 @@ def main():
     entManager.addComponentToEntity(ID, Position())
     entManager.addComponentToEntity(ID, Velocity())
     entManager.addComponentToEntity(ID, Input())
-    entManager.addComponentToEntity(ID, Renderable('Thing'))
+    entManager.addComponentToEntity(ID, Renderable('data/graphics/Thing'))
     ID = entManager.newEntity()
     entManager.addComponentToEntity(ID, Position())
 
     while True:
-        SCREEN.fill((0,0,0))
+        SCREEN.fill((255,255,255))
         sysManager.runSystems()
         pygame.display.update()
         CLOCK.tick(FPS)

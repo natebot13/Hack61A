@@ -43,13 +43,13 @@ class KeyboardInput(System):
 class Render(System):
     def __init__(self, screen):
         self.screen = screen
-    operating_components = ['Renderable', 'Position', 'Velocity']
+    operating_components = ['Renderable', 'Position', 'Input']
     def update(self, entityComponents):
-        if entityComponents['Velocity'].xDir <= 0:
+        if entityComponents['Input'].xDir <= 0:
             dirstr = 'L'
         else:
             dirstr = 'R'
-        if entityComponents['Velocity'].yDir >= 0:
+        if entityComponents['Input'].yDir >= 0:
             dirstr += 'D'
         else:
             dirstr += 'U'

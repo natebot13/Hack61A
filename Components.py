@@ -24,10 +24,11 @@ class Input(Component):
 
 class Renderable(Component):
     def __init__(self, filename, multidir=True):
+        self.images = {}
         if multidir:
             directions = ['RU', 'LU', 'LD', 'RD']
             for i in range(1,5):
-                self.images[directions[i]] = pygame.image.load(filename + '_' + str(i) + '.png')
+                self.images[directions[i-1]] = pygame.image.load(filename + '_' + str(i) + '.png')
         else:
             self.images = pygame.image.load(filename + '.png')
 
