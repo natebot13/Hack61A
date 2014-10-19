@@ -17,7 +17,6 @@ def main():
     ID = entManager.newEntity()
     entManager.addComponentToEntity(ID, Position())
     entManager.addComponentToEntity(ID, Velocity())
-    entManager.addComponentToEntity(ID, Input())
     entManager.addComponentToEntity(ID, Renderable('data/graphics/Thing'))
     ID = entManager.newEntity()
     entManager.addComponentToEntity(ID, Position())

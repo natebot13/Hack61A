@@ -1,18 +1,19 @@
 import pygame
+from math import pi, sin, cos, atan2, degrees
 
 class System:
     def SID(self):
         return self.__class__.__name__
 
 class MovePlayer(System):
-    operating_components = ['Position', 'Velocity', 'Input']
+    operating_components = ['Position', 'Velocity']
     def update(self, entityComponents):
         # print('Input xDir:', entityComponents['Input'].xDir)
-        entityComponents['Position'].x += entityComponents['Velocity'].vel*entityComponents['Input'].xDir
-        entityComponents['Position'].y += entityComponents['Velocity'].vel*entityComponents['Input'].yDir
+        entityComponents['Position'].x += entityComponents['Velocity'].speed*cos(entityComponents['Velocity'].angle)
+        entityComponents['Position'].y += entityComponents['Velocity'].speed*sin(entityComponents['Velocity'].angle)
 
 class KeyboardInput(System):
-    operating_components = ['Input']
+    operating_components = ['Velocity', 'blah']
     up, down = 0, 0
     left, right = 0, 0
 
@@ -37,22 +38,28 @@ class KeyboardInput(System):
                     self.left = 0
                 if event.key == pygame.K_RIGHT:
                     self.right = 0
-            entityComponents['Input'].yDir = self.up + self.down
-            entityComponents['Input'].xDir = self.left + self.right
+            x = self.left + self.right
+            y = self.up + self.down
+            if x == 0 and y == 0:
+                entityComponents['Velocity'].speed = 0
+            else:
+                entityComponents['Velocity'].speed = entityComponents['Velocity'].spdCONST
+                entityComponents['Velocity'].angle = atan2(y, x)
 
 class Render(System):
     def __init__(self, screen):
         self.screen = screen
-    operating_components = ['Renderable', 'Position', 'Input']
+    operating_components = ['Renderable', 'Position', 'Velocity']
     def update(self, entityComponents):
-        if entityComponents['Input'].xDir <= 0:
-            dirstr = 'L'
-        else:
+        print(degrees(entityComponents['Velocity'].angle))
+        if  pi/2 > entityComponents['Velocity'].angle > -pi/2:
             dirstr = 'R'
-        if entityComponents['Input'].yDir >= 0:
-            dirstr += 'D'
         else:
+            dirstr = 'L'
+        if entityComponents['Velocity'].angle < 0:
             dirstr += 'U'
+        else:
+            dirstr += 'D'
         self.screen.blit(entityComponents['Renderable'].images[dirstr], entityComponents['Position'].xy)
 
 #### DO NOT EDIT BELOW THIS ####

@@ -14,13 +14,10 @@ class Position(Component):
         return (self.x,self.y)
 
 class Velocity(Component):
-    def __init__(self, vel=5):
-        self.vel = vel
-
-class Input(Component):
-    def __init__(self):
-        self.xDir = 0
-        self.yDir = 0
+    def __init__(self, speed=5):
+        self.spdCONST = speed
+        self.speed = 0
+        self.angle = 0
 
 class Renderable(Component):
     def __init__(self, filename, multidir=True):
