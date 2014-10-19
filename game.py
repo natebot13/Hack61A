@@ -18,7 +18,7 @@ def main():
     entManager.addComponentToEntity(ID, Position())
     entManager.addComponentToEntity(ID, Velocity())
     entManager.addComponentToEntity(ID, Input())
-    entManager.addComponentToEntity(ID, Renderable('ball_L_D.png'))
+    entManager.addComponentToEntity(ID, Renderable('Thing'))
     ID = entManager.newEntity()
     entManager.addComponentToEntity(ID, Position())
 

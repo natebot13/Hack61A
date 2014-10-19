@@ -23,8 +23,13 @@ class Input(Component):
         self.yDir = 0
 
 class Renderable(Component):
-    def __init__(self, filename):
-        self.image = pygame.image.load(filename)
+    def __init__(self, filename, multidir=True):
+        if multidir:
+            directions = ['RU', 'LU', 'LD', 'RD']
+            for i in range(1,5):
+                self.images[directions[i]] = pygame.image.load(filename + '_' + str(i) + '.png')
+        else:
+            self.images = pygame.image.load(filename + '.png')
 
 class Unique(Component):
     def __init__(self):

@@ -43,9 +43,17 @@ class KeyboardInput(System):
 class Render(System):
     def __init__(self, screen):
         self.screen = screen
-    operating_components = ['Renderable', 'Position']
+    operating_components = ['Renderable', 'Position', 'Velocity']
     def update(self, entityComponents):
-        self.screen.blit(entityComponents['Renderable'].image, entityComponents['Position'].xy)
+        if entityComponents['Velocity'].xDir <= 0:
+            dirstr = 'L'
+        else:
+            dirstr = 'R'
+        if entityComponents['Velocity'].yDir >= 0:
+            dirstr += 'D'
+        else:
+            dirstr += 'U'
+        self.screen.blit(entityComponents['Renderable'].images[dirstr], entityComponents['Position'].xy)
 
 #### DO NOT EDIT BELOW THIS ####
 
