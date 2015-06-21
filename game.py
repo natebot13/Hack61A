@@ -25,9 +25,10 @@ def main():
 
     while True:
         SCREEN.fill((255,255,255))
-        sysManager.runSystems()
+        sysManager.runSystems(CLOCK.get_time())
         pygame.display.update()
         CLOCK.tick(FPS)
+        sysManager.endStep()
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,7 @@ class System:
         return self.__class__.__name__
 
 class MovePlayer(System):
-    operating_components = ['Position', 'Velocity']
+    operating_components = ['Player', 'Position', 'Velocity']
     def update(self, entityComponents):
         # print('Input xDir:', entityComponents['Input'].xDir)
         entityComponents['Position'].x += entityComponents['Velocity'].speed*cos(entityComponents['Velocity'].angle)
@@ -65,6 +65,9 @@ class Render(System):
 class FireballShooter(System):
     operating_components = ['Fireball', 'Shooter', 'Position']
     def __init__(self, entity_manager):
+        self.entity_manager = entity_manager
+
+    def update(self, entityComponents):
         pass
 
 #### DO NOT EDIT BELOW THIS ####

@@ -22,12 +22,14 @@ class Velocity(Component):
 class Renderable(Component):
     def __init__(self, filename, multidir=True):
         self.images = {}
+        directions = ['RU', 'LU', 'LD', 'RD']
         if multidir:
-            directions = ['RU', 'LU', 'LD', 'RD']
             for i in range(1,5):
                 self.images[directions[i-1]] = pygame.image.load(filename + '_' + str(i) + '.png')
         else:
-            self.images = pygame.image.load(filename + '.png')
+            image = pygame.image.load(filename + '.png')
+            for i in range(4):
+                self.images[directions[i]] = image
 
 class Fireball(Component):
     def __init__(self):
